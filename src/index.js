@@ -3,7 +3,7 @@
 var through = require('through2');
 var gutil = require('gulp-util');
 var stream = require('stream');
-var unpackAtlas = require('./unpckAtlas');
+var unpackAtlas = require('./unpackAtlas');
 
 
 var PluginError = gutil.PluginError;
@@ -18,7 +18,7 @@ const PLUGIN_NAME = 'unpackatlas';
 // 插件级别函数 (处理文件)
 function gulpAddClassName(toFolder,options) {
 
-
+  var baseRoot = options.baseRoot;
 
   // 创建一个让每个文件通过的 stream 通道
   return through.obj(function (file, enc, cb) {
