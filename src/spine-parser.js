@@ -22,7 +22,6 @@ spine.Atlas = function (atlasText) {
     } else if (!page) {
       page = new spine.AtlasPage();
       page.name = line;
-
       if (reader.readTuple(tuple) === 2) { // size is only optional for an atlas packed with an old TexturePacker.
         page.width = parseInt(tuple[0]);
         page.height = parseInt(tuple[1]);

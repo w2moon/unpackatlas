@@ -24,20 +24,23 @@ function unpackRegion(dir,region,newName,toFolder,cb){
     }
     
     if(region.originalHeight != region.height || region.originalWidth != region.width){
-        console.log("!!!origin not same",img,region.name);
+        
         result = result.extent(region.originalWidth,region.originalHeight);
     }
     var outFolder = toFolder+newName+".png";
-    result.write(outFolder,function(err){
-        if(err){
-            console.log(err,region.name);
-            cb(false);
-        }
-        else{
-            cb(true);
-        }
-        
-    });
+    mkdirp(path.dirname(outFolder),function(){
+        result.write(outFolder,function(err){
+            if(err){
+                console.log(err,region.name);
+                cb(false);
+            }
+            else{
+                cb(true);
+            }
+            
+        });
+    })
+    
 }
 
 //load all atlas
